@@ -18,12 +18,16 @@ package SalesTaxes.shopping;
 
 import SalesTaxes.products.Product;
 
-public class ShoppingCartProduct {
+import java.math.BigDecimal;
+
+public class PurchasedProduct {
 
     private Product product;
     private int quantity;
+    private BigDecimal finalPrice;
+    private BigDecimal tax;
 
-    public ShoppingCartProduct(Product product, int quantity) {
+    public PurchasedProduct(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
     }
@@ -42,5 +46,21 @@ public class ShoppingCartProduct {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public BigDecimal getFinalPrice() {
+        return finalPrice;
+    }
+
+    public void setFinalPrice(BigDecimal finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+
+    public BigDecimal getTax() {
+        return tax;
+    }
+
+    public void setTax(BigDecimal tax) {
+        this.tax = tax;
     }
 }

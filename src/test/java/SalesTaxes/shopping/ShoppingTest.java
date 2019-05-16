@@ -21,21 +21,31 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ShoppingCartProductTest {
+public class ShoppingTest {
 
-    private ShoppingCartProduct shoppingCartProduct;
+    private Shopping cart;
 
-    @Before public void createShoppingCartProduct() {
-        Product musicCD = new Product("a music CD", 15.12, false);
-        shoppingCartProduct = new ShoppingCartProduct(musicCD, 2);
+    @Before public void createShopping() {
+        cart = new Shopping();
+        Product p = new Product("a DVD", 21.34, false);
+        PurchasedProduct purchProduct = new PurchasedProduct(p,2);
+        cart.putIn(purchProduct);
+        p = new Product("a PC", 499.23, true);
+        purchProduct = new PurchasedProduct(p, 1);
+        cart.putIn(purchProduct);
     }
 
-    @Test public void testQuantity() {
-        assertEquals(shoppingCartProduct.getQuantity(), 2);
+    @Test public void testShoppingListSize() {
+        assertEquals(cart.getListSize(), 3);
     }
 
-    @Test public void testProduct() {
-        assertTrue(shoppingCartProduct.getProduct() instanceof Product);
+    @Test public void testRemoveByIndex() {
+        assertTrue(cart.remove(1) instanceof PurchasedProduct);
+    }
+
+    @Test public void testEmptyCart() {
+        cart.removeAll();
+        assertEquals(cart.getListSize(), 0);
     }
 
 }

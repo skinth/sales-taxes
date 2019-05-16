@@ -16,35 +16,45 @@
  */
 package SalesTaxes.taxes;
 
-import SalesTaxes.products.Book;
-import SalesTaxes.products.Food;
-import SalesTaxes.products.Medicine;
-import SalesTaxes.products.Product;
 
+import SalesTaxes.products.Product;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DefaultTax extends SalesTax {
 
-    private final List<Class> taxFree = new ArrayList<>() {
-        {
-            add(Book.class);
-            add(Medicine.class);
-            add(Food.class);
-        }
-    };
+    private List<Class> taxFree;
 
     public DefaultTax() {
         this.rate = DEFAULT_RATE;
+        this.taxFree = new ArrayList<>();
     }
 
     public DefaultTax(int rate) {
         this.rate = rate;
+        this.taxFree = new ArrayList<>();
+    }
+
+    public DefaultTax(int rate, List<Class> taxFree) {
+        this.rate = rate;
+        this.taxFree = taxFree;
     }
 
     @Override
     public boolean hasToApply(Product p) {
         return !this.taxFree.contains(p.getClass());
+    }
+
+    public void setTaxFree(List<Class> taxFree) {
+        this.taxFree = taxFree;
+    }
+
+    public void addTaxFree(Class c) {
+        this.taxFree.add(c);
+    }
+
+    public boolean removeTaxFree(Class c) {
+        return this.taxFree.remove(c);
     }
 
 }

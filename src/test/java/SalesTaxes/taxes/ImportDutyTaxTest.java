@@ -36,4 +36,9 @@ public class ImportDutyTaxTest {
         assertEquals(taxer.calculateTax(p).doubleValue(), 0.30, 0);
     }
 
+    @Test public void testCalculateImportDutyTaxExempt() {
+        Product p = new Food("pizza", 5.44, false, "pizza");
+        assertEquals(taxer.calculateTax(p).doubleValue(), 0.00, 0);
+    }
+
 }
