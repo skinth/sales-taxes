@@ -14,13 +14,23 @@
     You should have received a copy of the GNU General Public License
     along with SalesTaxes.  If not, see <https://www.gnu.org/licenses/>.
  */
-package SalesTaxes;
+package SalesTaxes.taxes;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import SalesTaxes.products.Product;
 
-public class AppTest {
-    @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
+public class ImportDutyTax extends SalesTax {
+
+    public ImportDutyTax() {
+        this.rate = SalesTax.DUTY_IMPORT_RATE;
     }
+
+    public ImportDutyTax(int rate) {
+        this.rate = rate;
+    }
+
+    @Override
+    public boolean hasToApply(Product p) {
+        return p.isImported();
+    }
+
 }

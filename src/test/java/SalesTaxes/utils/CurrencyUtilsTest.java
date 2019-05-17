@@ -14,13 +14,23 @@
     You should have received a copy of the GNU General Public License
     along with SalesTaxes.  If not, see <https://www.gnu.org/licenses/>.
  */
-package SalesTaxes;
+package SalesTaxes.utils;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
-public class AppTest {
-    @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
+import java.math.BigDecimal;
+
+public class CurrencyUtilsTest {
+
+    @Test public void testRoundUpToNearest() {
+        BigDecimal num = new BigDecimal(12.23);
+        assertEquals(-1, num.compareTo(CurrencyUtils.roundUpToNearest(num, 0.05)));
     }
+
+    @Test public void testTruncateTo() {
+        BigDecimal num = new BigDecimal(12.34567);
+        assertEquals(-1, num.compareTo(CurrencyUtils.truncateTo(num, 2)));
+    }
+
 }

@@ -14,13 +14,23 @@
     You should have received a copy of the GNU General Public License
     along with SalesTaxes.  If not, see <https://www.gnu.org/licenses/>.
  */
-package SalesTaxes;
+package SalesTaxes.utils;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
-public class AppTest {
-    @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
+public final class CurrencyUtils {
+
+    public static final BigDecimal roundUpToNearest(BigDecimal value, double factor) {
+        //round up value to the nearest factor
+        //new_value = ceil(value/factor) * factor
+        BigDecimal scale = new BigDecimal(factor);
+        BigDecimal quotient = value.divide(scale, 0, RoundingMode.CEILING);
+        BigDecimal product = quotient.multiply(scale);
+        return product.setScale(2, RoundingMode.FLOOR);
+    }
+
+    public static final BigDecimal truncateTo(BigDecimal value, int position) {
+        return value.setScale(position, RoundingMode.HALF_DOWN);
     }
 }

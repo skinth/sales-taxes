@@ -14,13 +14,25 @@
     You should have received a copy of the GNU General Public License
     along with SalesTaxes.  If not, see <https://www.gnu.org/licenses/>.
  */
-package SalesTaxes;
+package SalesTaxes.products;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
-public class AppTest {
-    @Test public void testAppHasAGreeting() {
-        App classUnderTest = new App();
+public class MedicineTest extends ProductTest {
+
+    @Before public void createMedicine() {
+        product = new Medicine("box of pills", 12.99, false,
+                    "Angelini", "Tachipirina", "Paracetamolo");
     }
+
+    @Test public void isMedicine() {
+        assertTrue(product instanceof Medicine);
+    }
+
+    @Test public void testMedicineName() {
+        assertTrue(((Medicine)product).getName().contains("Tachipirina"));
+    }
+
 }
