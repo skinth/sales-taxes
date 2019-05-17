@@ -30,8 +30,8 @@ public class Shopping {
         this.purchasedProducts = new ArrayList<PurchasedProduct>();
     }
 
-    public Shopping(List<PurchasedProduct> cartProducts) {
-        this.purchasedProducts = cartProducts;
+    public Shopping(List<PurchasedProduct> purchasedProducts) {
+        this.purchasedProducts = purchasedProducts;
     }
 
     public boolean isEmpty() {
@@ -46,8 +46,12 @@ public class Shopping {
         return numberOf;
     }
 
-    public void putIn(PurchasedProduct cartProduct) {
-        this.purchasedProducts.add(cartProduct);
+    public List<PurchasedProduct> getPurchasedProducts() {
+        return this.purchasedProducts;
+    }
+
+    public void putIn(PurchasedProduct purchasedProduct) {
+        this.purchasedProducts.add(purchasedProduct);
     }
 
     public PurchasedProduct remove(int index) {
