@@ -31,7 +31,7 @@ public class FoodTest extends ProductTest {
     }
 
     @Test public void testFoodCategory() {
-        assertEquals(((Food)product).getCategory(), "dessert");
+        assertEquals("dessert", ((Food)product).getCategory());
     }
 
 }

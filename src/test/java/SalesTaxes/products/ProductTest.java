@@ -35,6 +35,6 @@ public class ProductTest {
     }
 
     @Test public void testProductShelfPrice() {
-        assertEquals(product.getShelfPrice(), 12.99, 0);
+        assertEquals(12.99, product.getShelfPrice(), 0);
     }
 }

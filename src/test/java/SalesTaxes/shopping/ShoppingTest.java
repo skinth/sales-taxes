@@ -36,7 +36,7 @@ public class ShoppingTest {
     }
 
     @Test public void testShoppingListSize() {
-        assertEquals(cart.getListSize(), 3);
+        assertEquals(3, cart.getListSize());
     }
 
     @Test public void testRemoveByIndex() {
@@ -45,7 +45,7 @@ public class ShoppingTest {
 
     @Test public void testEmptyCart() {
         cart.removeAll();
-        assertEquals(cart.getListSize(), 0);
+        assertEquals(0, cart.getListSize());
     }
 
 }

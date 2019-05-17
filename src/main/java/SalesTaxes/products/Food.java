@@ -25,6 +25,11 @@ public class Food extends Product {
         this.category = category;
     }
 
+    public Food(String description, double shelfPrice, boolean imported) {
+        super(description, shelfPrice, imported);
+    }
+
+
     public String getCategory() {
         return category;
     }

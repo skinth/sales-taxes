@@ -31,7 +31,7 @@ public class PurchasedProductTest {
     }
 
     @Test public void testQuantity() {
-        assertEquals(purchasedProduct.getQuantity(), 2);
+        assertEquals(2, purchasedProduct.getQuantity());
     }
 
     @Test public void testProduct() {

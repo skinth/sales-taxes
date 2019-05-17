@@ -31,6 +31,10 @@ public class Medicine extends Product {
         this.activeIngredient = activeIngredient;
     }
 
+    public Medicine(String description, double shelfPrice, boolean imported) {
+        super(description, shelfPrice, imported);
+    }
+
     public String getManufacturer() {
         return manufacturer;
     }

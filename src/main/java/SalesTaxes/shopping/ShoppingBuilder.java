@@ -4,10 +4,19 @@ import SalesTaxes.products.Product;
 
 public class ShoppingBuilder implements IShoppingBuilder {
 
+    private static ShoppingBuilder me;
     private Shopping shopping;
 
-    public ShoppingBuilder() {
+    private ShoppingBuilder() {
         this.shopping = new Shopping();
+    }
+
+    public static ShoppingBuilder getMe() {
+        if (me == null) {
+            me = new ShoppingBuilder();
+        }
+
+        return me;
     }
 
     @Override

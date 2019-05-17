@@ -16,6 +16,8 @@
  */
 package SalesTaxes.shopping;
 
+import SalesTaxes.utils.CurrencyUtils;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,8 @@ public class Shopping {
     }
 
     public Shopping(List<PurchasedProduct> purchasedProducts) {
-        this.purchasedProducts = purchasedProducts;
+        this.purchasedProducts = new ArrayList<>();
+        purchasedProducts.forEach(el -> this.purchasedProducts.add(el));
     }
 
     public boolean isEmpty() {
@@ -67,7 +70,7 @@ public class Shopping {
     }
 
     public void setTotal(BigDecimal total) {
-        this.total = total;
+        this.total = CurrencyUtils.truncateTo(total, 2);
     }
 
     public BigDecimal getTotalTaxes() {
@@ -75,6 +78,6 @@ public class Shopping {
     }
 
     public void setTotalTaxes(BigDecimal totalTaxes) {
-        this.totalTaxes = totalTaxes;
+        this.totalTaxes = CurrencyUtils.truncateTo(totalTaxes, 2);
     }
 }

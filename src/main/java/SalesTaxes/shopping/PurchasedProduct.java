@@ -17,8 +17,10 @@
 package SalesTaxes.shopping;
 
 import SalesTaxes.products.Product;
+import SalesTaxes.utils.CurrencyUtils;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class PurchasedProduct {
 
@@ -48,12 +50,12 @@ public class PurchasedProduct {
         this.quantity = quantity;
     }
 
-    public BigDecimal getFinalPrice() {
-        return finalPrice;
+    public double getFinalPrice() {
+        return finalPrice.doubleValue();
     }
 
-    public void setFinalPrice(BigDecimal finalPrice) {
-        this.finalPrice = finalPrice;
+    public void setFinalPrice(double finalPrice) {
+        this.finalPrice = CurrencyUtils.truncateTo(new BigDecimal(finalPrice), 2);
     }
 
     public BigDecimal getTax() {

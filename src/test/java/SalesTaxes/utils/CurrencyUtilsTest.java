@@ -25,7 +25,12 @@ public class CurrencyUtilsTest {
 
     @Test public void testRoundUpToNearest() {
         BigDecimal num = new BigDecimal(12.23);
-        assertEquals(num.compareTo(CurrencyUtils.roundUpToNearest(num, 0.05)), -1);
+        assertEquals(-1, num.compareTo(CurrencyUtils.roundUpToNearest(num, 0.05)));
+    }
+
+    @Test public void testTruncateTo() {
+        BigDecimal num = new BigDecimal(12.34567);
+        assertEquals(-1, num.compareTo(CurrencyUtils.truncateTo(num, 2)));
     }
 
 }

@@ -29,6 +29,10 @@ public class Book extends Product {
         this.isbn = isbn;
     }
 
+    public Book(String description, double shelfPrice, boolean imported) {
+        super(description, shelfPrice, imported);
+    }
+
     public String getTitle() {
         return title;
     }

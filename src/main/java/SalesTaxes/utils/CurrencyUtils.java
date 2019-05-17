@@ -29,4 +29,8 @@ public final class CurrencyUtils {
         BigDecimal product = quotient.multiply(scale);
         return product.setScale(2, RoundingMode.FLOOR);
     }
+
+    public static final BigDecimal truncateTo(BigDecimal value, int position) {
+        return value.setScale(position, RoundingMode.HALF_DOWN);
+    }
 }
