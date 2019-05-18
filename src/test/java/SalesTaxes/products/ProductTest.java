@@ -1,4 +1,6 @@
 /*
+    Copyright (C) 2019 Stefano Salvagni
+
     This file is part of SalesTaxes.
 
     SalesTaxes is free software: you can redistribute it and/or modify
