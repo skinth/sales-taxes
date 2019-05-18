@@ -49,7 +49,7 @@ public class InteractiveCLI {
                 doShopping();
         }
 
-        System.out.println("Thanks to use the program!");
+        System.out.println("Thanks to use this program!");
     }
 
     private String showMainMenu() {
