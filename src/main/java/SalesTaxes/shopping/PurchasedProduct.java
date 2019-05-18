@@ -67,4 +67,9 @@ public class PurchasedProduct {
     public void setTax(BigDecimal tax) {
         this.tax = tax;
     }
+
+    @Override
+    public String toString() {
+        return this.getQuantity() + " " + this.product.getDescription() + " at " + this.product.getShelfPrice();
+    }
 }

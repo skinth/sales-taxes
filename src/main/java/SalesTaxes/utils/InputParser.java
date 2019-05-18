@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 public class InputParser {
 
     //^(\d+)\s([a-z\s]+)\sat{1,1}\s(\d+\.\d*)$
+    public final static String DEFAULT_REGEX = "^(\\d+)\\s([a-z\\s]+)\\sat{1,1}\\s(\\d+\\.\\d*)$";
     private String regex;
     private Matcher matcher;
 
@@ -32,7 +33,7 @@ public class InputParser {
     }
 
     public InputParser parse(String sentence) {
-        Pattern pattern = Pattern.compile(this.regex);
+        Pattern pattern = Pattern.compile(this.regex, Pattern.CASE_INSENSITIVE);
         this.matcher = pattern.matcher(sentence);
         return this;
     }
@@ -42,7 +43,7 @@ public class InputParser {
         //group[1] = first match
         //...
 
-        if(this.matcher.find())
+        if(this.matcher.matches())
             return this.matcher.group(pos);
 
         throw new WrongInputFormatException("Wrong format sentence!");

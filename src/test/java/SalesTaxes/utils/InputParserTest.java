@@ -31,35 +31,33 @@ public class InputParserTest {
 
     private InputParser parsedSentence;
 
-    @Before public void createInputParser() {
-        parsedSentence = new InputParser("^(\\d+)\\s([a-z\\s]+)\\sat{1,1}\\s(\\d+\\.\\d*)$");
+    @Before
+    public void createInputParser() {
+        parsedSentence = new InputParser(InputParser.DEFAULT_REGEX);
     }
 
-    @Test public void testParseSentence() {
+    @Test
+    public void testParseSentence() throws WrongInputFormatException {
         String sentence = "3 book at 19.99";
         parsedSentence = parsedSentence.parse(sentence);
-        try {
-            assertEquals(3, parsedSentence.getQuantity());
-            assertEquals("book", parsedSentence.getDescription());
-            assertEquals(19.99, parsedSentence.getPrice(), 0);
-            assertEquals(false, parsedSentence.isImported());
-        }catch(WrongInputFormatException ex) {
-        }
+        assertEquals(3, parsedSentence.getQuantity());
+        assertEquals("book", parsedSentence.getDescription());
+        assertEquals(19.99, parsedSentence.getPrice(), 0);
+        assertEquals(false, parsedSentence.isImported());
     }
 
-    @Test public void testParseSentenceImported() {
+    @Test
+    public void testParseSentenceImported() throws WrongInputFormatException {
         String sentence = "3 imported book at 19.99";
         parsedSentence = parsedSentence.parse(sentence);
-        try {
-            assertEquals(3, parsedSentence.getQuantity());
-            assertEquals("book", parsedSentence.getDescription());
-            assertEquals(19.99, parsedSentence.getPrice(), 0);
-            assertEquals(false, parsedSentence.isImported());
-        }catch(WrongInputFormatException ex) {
-        }
+        assertEquals(3, parsedSentence.getQuantity());
+        assertEquals("imported book", parsedSentence.getDescription());
+        assertEquals(19.99, parsedSentence.getPrice(), 0);
+        assertEquals(true, parsedSentence.isImported());
     }
 
-    @Test(expected = WrongInputFormatException.class) public void testParseSentenceWrongFormat() throws WrongInputFormatException{
+    @Test(expected = WrongInputFormatException.class)
+    public void testParseSentenceWrongFormat() throws WrongInputFormatException {
         String sentence = "3 at 19.99";
         parsedSentence = parsedSentence.parse(sentence);
 

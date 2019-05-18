@@ -18,6 +18,8 @@
  */
 package SalesTaxes;
 
+import SalesTaxes.cli.InteractiveCLI;
+import SalesTaxes.products.Product;
 import SalesTaxes.utils.InputParser;
 import SalesTaxes.utils.WrongInputFormatException;
 
@@ -27,16 +29,8 @@ import java.util.regex.Pattern;
 public class App {
 
     public static void main(String[] args) {
+        InteractiveCLI cli = new InteractiveCLI();
 
-        System.out.println("App!");
-
-        String sentence = "3 imported book at 19.99";
-        InputParser parsedSentence = new InputParser("^(\\d+)\\s([a-z\\s]+)\\sat{1,1}\\s(\\d+\\.\\d*)$");
-        parsedSentence = parsedSentence.parse(sentence);
-        try {
-            System.out.println(parsedSentence.isImported());
-        }catch(WrongInputFormatException ex) {
-            System.out.println(ex.getMessage());
-        }
+        cli.start();
     }
 }
