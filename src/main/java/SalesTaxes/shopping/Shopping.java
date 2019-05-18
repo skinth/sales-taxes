@@ -18,6 +18,7 @@
  */
 package SalesTaxes.shopping;
 
+import SalesTaxes.products.Product;
 import SalesTaxes.utils.CurrencyUtils;
 
 import java.math.BigDecimal;
@@ -57,6 +58,11 @@ public class Shopping {
 
     public void putIn(PurchasedProduct purchasedProduct) {
         this.purchasedProducts.add(purchasedProduct);
+    }
+
+    public void putIn(Product p, int quantity) {
+        PurchasedProduct purchasedProduct = new PurchasedProduct(p, quantity);
+        this.putIn(purchasedProduct);
     }
 
     public PurchasedProduct remove(int index) {

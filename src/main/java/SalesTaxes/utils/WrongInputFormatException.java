@@ -16,14 +16,16 @@
     You should have received a copy of the GNU General Public License
     along with SalesTaxes.  If not, see <https://www.gnu.org/licenses/>.
  */
-package SalesTaxes;
+package SalesTaxes.utils;
 
-import SalesTaxes.cli.InteractiveCLI;
+public class WrongInputFormatException extends Exception {
 
-public class App {
-    public static void main(String[] args) {
-        InteractiveCLI cli = new InteractiveCLI();
-
-        cli.start();
+    public WrongInputFormatException() {
+        super();
     }
+
+    public WrongInputFormatException(String message) {
+        super(message);
+    }
+
 }
