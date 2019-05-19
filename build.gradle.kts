@@ -14,6 +14,10 @@ plugins {
     application
 }
 
+val run by tasks.getting(JavaExec::class) {
+    standardInput = System.`in`
+}
+
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.

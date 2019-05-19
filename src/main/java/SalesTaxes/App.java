@@ -18,9 +18,38 @@
  */
 package SalesTaxes;
 
+import SalesTaxes.products.Book;
+import SalesTaxes.products.Food;
+import SalesTaxes.products.Medicine;
+import SalesTaxes.products.Product;
+import SalesTaxes.shopping.CashRegister;
+import SalesTaxes.shopping.Shopping;
+import SalesTaxes.shopping.ShoppingBuilder;
+import SalesTaxes.taxes.DefaultTax;
+import SalesTaxes.taxes.ImportDutyTax;
+import SalesTaxes.taxes.SalesTax;
+
+import java.util.ArrayList;
+
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("App!");
+        System.out.println("SalesTaxes");
+
+        CashRegister cr = new CashRegister(new SalesTax[] {
+                new DefaultTax(SalesTax.DEFAULT_RATE, new ArrayList<>() {{
+                    add(Book.class);
+                    add(Medicine.class);
+                    add(Food.class);
+                }}),
+                new ImportDutyTax()
+        });
+
+        Shopping shopping = ShoppingBuilder.getMe()
+                                .purchase(new Product("t-shirt", 14.99, false), 1)
+                                .purchase(new Book("imported book", 13.23, true), 2)
+                                .build();
+
+        cr.printReceipt(shopping).forEach(it -> System.out.println(it));
     }
 }

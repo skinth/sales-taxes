@@ -21,7 +21,7 @@ command _./gradlew test_.
 # Results
 The results upon supplied test data are contained in the **CashRegisterTest** test class.
 
-# Interactive mode
+# Interactive mode (branch development)
 If you run the program, it presents you an interactive prompt where you can write sentences like "2 book at 12.49",
 or "1 box of strawberry at 2.99" then you have to choose the type of the product (Food, Medicine, Book, Other; the last 
 one will be taxed at 10%); if you specify the word "imported" the product will be taxed at 5%. 
