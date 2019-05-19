@@ -23,8 +23,8 @@ import java.util.regex.Pattern;
 
 public class InputParser {
 
-    //^(\d+)\s([a-z\s]+)\sat{1,1}\s(\d+\.\d*)$
-    public final static String DEFAULT_REGEX = "^(\\d+)\\s([a-z\\s]+)\\sat{1,1}\\s(\\d+\\.\\d*)$";
+    //^(\d+)\s([a-z\-\s]+)\sat{1,1}\s(\d+\.\d+)$
+    public final static String DEFAULT_REGEX = "^(\\d+)\\s([a-z\\-\\s]+)\\sat{1,1}\\s(\\d+\\.\\d+)$";
     private String regex;
     private Matcher matcher;
 
