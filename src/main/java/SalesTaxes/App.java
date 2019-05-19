@@ -28,6 +28,8 @@ import SalesTaxes.shopping.ShoppingBuilder;
 import SalesTaxes.taxes.DefaultTax;
 import SalesTaxes.taxes.ImportDutyTax;
 import SalesTaxes.taxes.SalesTax;
+import SalesTaxes.utils.InputParser;
+import SalesTaxes.utils.WrongInputFormatException;
 
 import java.util.ArrayList;
 
@@ -45,11 +47,19 @@ public class App {
                 new ImportDutyTax()
         });
 
-        Shopping shopping = ShoppingBuilder.getMe()
-                                .purchase(new Product("t-shirt", 14.99, false), 1)
-                                .purchase(new Book("imported book", 13.23, true), 2)
-                                .build();
-
-        cr.printReceipt(shopping).forEach(it -> System.out.println(it));
+        try {
+            InputParser parser = new InputParser(InputParser.DEFAULT_REGEX);
+            //parse t-shirt
+            parser = parser.parse("1 t-shirt at 14.99");
+            ShoppingBuilder shoppingBuilder = ShoppingBuilder.getMe()
+                    .purchase(new Product(parser.getDescription(), parser.getPrice(), parser.isImported()), parser.getQuantity());
+            //parse books
+            parser = parser.parse("2 book at 13.23");
+            shoppingBuilder = shoppingBuilder.purchase(new Book(parser.getDescription(), parser.getPrice(), parser.isImported()), parser.getQuantity());
+            Shopping shopping = shoppingBuilder.build();
+            cr.printReceipt(shopping).forEach(it -> System.out.println(it));
+        }catch (WrongInputFormatException ex) {
+            System.out.println("Wrong input sentence format!");
+        }
     }
 }
