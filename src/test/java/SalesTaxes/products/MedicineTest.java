@@ -25,7 +25,7 @@ import org.junit.Test;
 public class MedicineTest extends ProductTest {
 
     @Before public void createMedicine() {
-        product = new Medicine("box of pills", 12.99, false,
+        product = new Medicine("box of pills", 12.99,
                     "Angelini", "Tachipirina", "Paracetamolo");
     }
 

@@ -19,7 +19,7 @@ result opening the index.html file under the path build/reports/tests/; after yo
 command _./gradlew test_.
 
 # Results
-The results upon supplied test data are contained in the **CashRegisterTest** test class.
+The results upon supplied test data are contained in the **AppTest** test class.
 
 # Interactive mode (branch development)
 If you run the program, it presents you an interactive prompt where you can write sentences like "2 book at 12.49",

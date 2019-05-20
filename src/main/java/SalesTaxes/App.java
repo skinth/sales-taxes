@@ -31,14 +31,15 @@ import SalesTaxes.taxes.SalesTax;
 import SalesTaxes.utils.InputParser;
 import SalesTaxes.utils.WrongInputFormatException;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class App {
 
-    public static void main(String[] args) {
-        System.out.println("SalesTaxes");
+    private CashRegister cashRegister;
 
-        CashRegister cr = new CashRegister(new SalesTax[] {
+    public App() {
+        //create cash register and tax collectors
+         this.cashRegister = new CashRegister(new SalesTax[]{
                 new DefaultTax(SalesTax.DEFAULT_RATE, new ArrayList<>() {{
                     add(Book.class);
                     add(Medicine.class);
@@ -46,20 +47,43 @@ public class App {
                 }}),
                 new ImportDutyTax()
         });
+    }
 
+    public Shopping doShopping(Map<Product.ProductType, String[]> sentences) {
+        Shopping shopping = new Shopping();
         try {
+            //DEFAULT_REGEX matches sentence in this format:
+            //digit word1 [word2...wordn] at digit1[digit2...digitn].digit1[digit2...digitn]
             InputParser parser = new InputParser(InputParser.DEFAULT_REGEX);
-            //parse t-shirt
-            parser = parser.parse("1 t-shirt at 14.99");
-            ShoppingBuilder shoppingBuilder = ShoppingBuilder.getMe()
-                    .purchase(new Product(parser.getDescription(), parser.getPrice(), parser.isImported()), parser.getQuantity());
-            //parse books
-            parser = parser.parse("2 book at 13.23");
-            shoppingBuilder = shoppingBuilder.purchase(new Book(parser.getDescription(), parser.getPrice(), parser.isImported()), parser.getQuantity());
-            Shopping shopping = shoppingBuilder.build();
-            cr.printReceipt(shopping).forEach(it -> System.out.println(it));
-        }catch (WrongInputFormatException ex) {
+            ShoppingBuilder shoppingBuilder= ShoppingBuilder.getMe();
+            for(Product.ProductType key : sentences.keySet()) {
+                for (int i = 0; i < sentences.get(key).length; i++)
+                    shoppingBuilder.purchase(parser.parseProduct(key, sentences.get(key)[i]), parser.getQuantity());
+            }
+            shopping = shoppingBuilder.build();
+            this.cashRegister.printReceipt(shopping).forEach(it -> System.out.println(it));
+        } catch (WrongInputFormatException ex) {
             System.out.println("Wrong input sentence format!");
         }
+        return shopping;
+    }
+
+    public CashRegister getCashRegister() {
+        return this.cashRegister;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Sales Taxes  Copyright (C) 2019  Stefano Salvagni\n" +
+                "This program comes with ABSOLUTELY NO WARRANTY; for details type consult LICENSE file.\n" +
+                "This is free software, and you are welcome to redistribute it\n" +
+                "under certain conditions; read LICENSE file for details.\n");
+
+        App app = new App();
+
+        Map<Product.ProductType, String[]> ss = new LinkedHashMap<>() {{
+            put(Product.ProductType.Other, new String[] {"1 t-shirt at 14.99"}); //taxed at 10% (1.50)
+            put(Product.ProductType.Book,  new String[] {"2 imported book at 13.23"}); //taxed at 5%  (0.70)
+        }};
+        app.doShopping(ss);
     }
 }

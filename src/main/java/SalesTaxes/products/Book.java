@@ -24,15 +24,15 @@ public class Book extends Product {
     private String author;
     private String isbn;
 
-    public Book(String description, double shelfPrice, boolean imported, String title, String author, String isbn) {
-        super(description, shelfPrice, imported);
+    public Book(String description, double shelfPrice, String title, String author, String isbn) {
+        super(description, shelfPrice);
         this.title = title;
         this.author = author;
         this.isbn = isbn;
     }
 
-    public Book(String description, double shelfPrice, boolean imported) {
-        super(description, shelfPrice, imported);
+    public Book(String description, double shelfPrice) {
+        super(description, shelfPrice);
     }
 
     public String getTitle() {

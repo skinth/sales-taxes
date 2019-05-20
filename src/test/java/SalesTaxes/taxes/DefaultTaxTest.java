@@ -38,12 +38,12 @@ public class DefaultTaxTest {
     }
 
     @Test public void testCalculateDefaultTax() {
-        Product p = new Product("a blackboard", 7.98, false);
+        Product p = new Product("a blackboard", 7.98);
         assertEquals(0.80, taxer.calculateTax(p).doubleValue(), 0);
     }
 
     @Test public void testCalculateDefaultTaxExempt() {
-        Product p = new Book("a book", 7.98, false, "MyBook", "MyAuthor", "123567890123");
+        Product p = new Book("a book", 7.98, "MyBook", "MyAuthor", "123567890123");
         assertEquals(0.00, taxer.calculateTax(p).doubleValue(),0);
     }
 

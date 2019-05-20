@@ -22,6 +22,13 @@ import java.math.BigDecimal;
 
 public class Product {
 
+    public enum ProductType {
+        Book,
+        Medicine,
+        Food,
+        Other
+    }
+
     protected String description;
     protected BigDecimal shelfPrice;
     protected boolean imported;
@@ -32,10 +39,10 @@ public class Product {
         this.imported = false;
     }
 
-    public Product(String description, double shelfPrice, boolean imported) {
+    public Product(String description, double shelfPrice) {
         this.description = description;
         this.shelfPrice = new BigDecimal(shelfPrice);
-        this.imported = imported;
+        this.imported = this.isImported();
     }
 
     public String getDescription() {
@@ -55,6 +62,6 @@ public class Product {
     }
 
     public boolean isImported() {
-        return imported;
+        return this.description.contains("imported");
     }
 }

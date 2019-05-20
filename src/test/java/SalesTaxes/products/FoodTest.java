@@ -25,7 +25,7 @@ import org.junit.Test;
 public class FoodTest extends ProductTest {
 
     @Before public void createFood() {
-        product = new Food("a chocolate bar", 12.99, true, "dessert");
+        product = new Food("a chocolate bar", 12.99, "dessert");
     }
 
     @Test public void isFood() {

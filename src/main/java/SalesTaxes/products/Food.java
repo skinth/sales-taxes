@@ -22,13 +22,13 @@ public class Food extends Product {
 
     private String category;
 
-    public Food(String description, double shelfPrice, boolean imported, String category) {
-        super(description, shelfPrice, imported);
+    public Food(String description, double shelfPrice, String category) {
+        super(description, shelfPrice);
         this.category = category;
     }
 
-    public Food(String description, double shelfPrice, boolean imported) {
-        super(description, shelfPrice, imported);
+    public Food(String description, double shelfPrice) {
+        super(description, shelfPrice);
     }
 
 

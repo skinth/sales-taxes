@@ -51,9 +51,9 @@ public class CashRegisterTest {
     public void testInputOne() {
         ShoppingBuilder shoppingBuilder = ShoppingBuilder.getMe();
         Shopping shopping = shoppingBuilder
-                .purchase(new Book("book", 12.49, false), 2)
-                .purchase(new Product("music CD", 14.99, false), 1)
-                .purchase(new Food("chocolate bar", 0.85, false), 1)
+                .purchase(new Book("book", 12.49), 2)
+                .purchase(new Product("music CD", 14.99), 1)
+                .purchase(new Food("chocolate bar", 0.85), 1)
                 .build();
         List<String> listR = cash.printReceipt(shopping);
         assertEquals(24.98, Double.parseDouble(listR.get(1).split(":")[1]), 0);
@@ -67,8 +67,8 @@ public class CashRegisterTest {
     public void testInputTwo() {
         ShoppingBuilder shoppingBuilder = ShoppingBuilder.getMe();
         Shopping shopping = shoppingBuilder
-                .purchase(new Food("imported box of chocolates", 10.00, true), 1)
-                .purchase(new Product("imported bottle of perfume", 47.50, true), 1)
+                .purchase(new Food("imported box of chocolates", 10.00), 1)
+                .purchase(new Product("imported bottle of perfume", 47.50), 1)
                 .build();
         List<String> listR = cash.printReceipt(shopping);
         assertEquals(10.50, Double.parseDouble(listR.get(1).split(":")[1]), 0);
@@ -81,10 +81,10 @@ public class CashRegisterTest {
     public void testInputThree() {
         ShoppingBuilder shoppingBuilder = ShoppingBuilder.getMe();
         Shopping shopping = shoppingBuilder
-                .purchase(new Product("imported bottle of perfume", 27.99, true), 1)
-                .purchase(new Product("bottle of perfume", 18.99, false), 1)
-                .purchase(new Medicine("packet of headache pills", 9.75, false), 1)
-                .purchase(new Food("box of imported cholates", 11.25, true), 3)
+                .purchase(new Product("imported bottle of perfume", 27.99), 1)
+                .purchase(new Product("bottle of perfume", 18.99), 1)
+                .purchase(new Medicine("packet of headache pills", 9.75), 1)
+                .purchase(new Food("box of imported cholates", 11.25), 3)
                 .build();
         List<String> listR = cash.printReceipt(shopping);
         assertEquals(32.19, Double.parseDouble(listR.get(1).split(":")[1]), 0);
