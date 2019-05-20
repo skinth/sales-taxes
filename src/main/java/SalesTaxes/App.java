@@ -80,10 +80,47 @@ public class App {
 
         App app = new App();
 
-        Map<Product.ProductType, String[]> ss = new LinkedHashMap<>() {{
+        Map<Product.ProductType, String[]> inputOne = new LinkedHashMap<>() {{
+            put(Product.ProductType.Book, new String[] {"2 book at 12.49"});
+            put(Product.ProductType.Other, new String[] {"1 music CD at 14.99"});
+            put(Product.ProductType.Food, new String[] {"1 chocolate bar at 0.85"});
+        }};
+
+        Map<Product.ProductType, String[]> inputTwo = new LinkedHashMap<>() {{
+            put(Product.ProductType.Food, new String[] {"1 imported box of chocolates at 10.00"});
+            put(Product.ProductType.Other, new String[] {"1 imported bottle of perfume at 47.50"});
+        }};
+
+        Map<Product.ProductType, String[]> inputThree = new LinkedHashMap<>() {{
+            put(Product.ProductType.Other, new String[] {"1 imported bottle of perfume at 27.99", "1 bottle of perfume at 18.99"});
+            put(Product.ProductType.Medicine,  new String[] {"1 packet of headache pills at 9.75"});
+            put(Product.ProductType.Food,  new String[] {"3 box of imported chocolates at 11.25"});
+        }};
+
+        System.out.println("Input:");
+        inputOne.values().forEach(sentences -> Arrays.stream(sentences).forEach(it -> System.out.println(it)));
+        System.out.print("\n");
+
+        System.out.println("Input:");
+        inputTwo.values().forEach(sentences -> Arrays.stream(sentences).forEach(it -> System.out.println(it)));
+        System.out.print("\n");
+
+        System.out.println("Input:");
+        inputThree.values().forEach(sentences -> Arrays.stream(sentences).forEach(it -> System.out.println(it)));
+        System.out.print("\n");
+
+        app.doShopping(inputOne);
+        System.out.print("\n");
+
+        app.doShopping(inputTwo);
+        System.out.print("\n");
+
+        app.doShopping(inputThree);
+
+        /*ss = new LinkedHashMap<>() {{
             put(Product.ProductType.Other, new String[] {"1 t-shirt at 14.99"}); //taxed at 10% (1.50)
             put(Product.ProductType.Book,  new String[] {"2 imported book at 13.23"}); //taxed at 5%  (0.70)
         }};
-        app.doShopping(ss);
+        app.doShopping(ss);*/
     }
 }
