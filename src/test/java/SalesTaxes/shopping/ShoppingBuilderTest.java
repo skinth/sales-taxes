@@ -36,9 +36,9 @@ public class ShoppingBuilderTest {
 
     @Before public void createShoppingBuilder() {
         List<Product> products = new ArrayList<>() {{
-           add(new Product("a black pen", 0.79, false));
-           add(new Food("a cup of damn good coffee", 1.16, false, "drinks"));
-           add(new Medicine("a bottle of antibiotic spray", 8.60, false,
+           add(new Product("a black pen", 0.79));
+           add(new Food("a cup of damn good coffee", 1.16, "drinks"));
+           add(new Medicine("a bottle of antibiotic spray", 8.60,
                    "Mylan", "Froben", "Flubiprofene"));
         }};
         builder = ShoppingBuilder.getMe();

@@ -80,7 +80,7 @@ public class InteractiveCLI {
                 this.shopping.getPurchasedProducts().forEach(it -> System.out.println(it));
             } else {
                 InputParser inputParser = new InputParser(InputParser.DEFAULT_REGEX);
-                inputParser = inputParser.parse(sentence);
+                inputParser.parse(sentence);
                 try {
                     Product productType = tellMeProductType(inputParser.getDescription(),
                             inputParser.getPrice(), inputParser.isImported());
@@ -102,13 +102,13 @@ public class InteractiveCLI {
         }while(!isValidCommand(prodType, new String[]{"book", "medicine", "food", "other"}));
 
         if (prodType.compareToIgnoreCase("book") == 0) {
-            return new Book(description, price, imported);
+            return new Book(description, price);
         } else if(prodType.compareToIgnoreCase("food") == 0) {
-            return new Food(description, price, imported);
+            return new Food(description, price);
         } else if(prodType.compareToIgnoreCase("medicine") == 0) {
-            return new Medicine(description, price, imported);
+            return new Medicine(description, price);
         } else {
-            return new Product(description, price, imported);
+            return new Product(description, price);
         }
     }
 

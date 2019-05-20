@@ -29,7 +29,7 @@ public class ProductTest {
 
     @Before public void createProduct() {
         defaultProduct = new Product();
-        product = new Product("music CD", 12.99, false);
+        product = new Product("music CD", 12.99);
     }
 
     @Test public void testProductCreation() {

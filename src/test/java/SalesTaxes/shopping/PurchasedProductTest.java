@@ -28,7 +28,7 @@ public class PurchasedProductTest {
     private PurchasedProduct purchasedProduct;
 
     @Before public void createPurchasedProduct() {
-        Product musicCD = new Product("a music CD", 15.12, false);
+        Product musicCD = new Product("a music CD", 15.12);
         purchasedProduct = new PurchasedProduct(musicCD, 2);
     }
 

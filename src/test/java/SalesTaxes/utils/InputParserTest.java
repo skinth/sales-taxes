@@ -39,7 +39,7 @@ public class InputParserTest {
     @Test
     public void testParseSentence() throws WrongInputFormatException {
         String sentence = "3 book at 19.99";
-        parsedSentence = parsedSentence.parse(sentence);
+        parsedSentence.parse(sentence);
         assertEquals(3, parsedSentence.getQuantity());
         assertEquals("book", parsedSentence.getDescription());
         assertEquals(19.99, parsedSentence.getPrice(), 0);
@@ -49,7 +49,7 @@ public class InputParserTest {
     @Test
     public void testParseSentenceImported() throws WrongInputFormatException {
         String sentence = "3 imported book at 19.99";
-        parsedSentence = parsedSentence.parse(sentence);
+        parsedSentence.parse(sentence);
         assertEquals(3, parsedSentence.getQuantity());
         assertEquals("imported book", parsedSentence.getDescription());
         assertEquals(19.99, parsedSentence.getPrice(), 0);
@@ -59,7 +59,7 @@ public class InputParserTest {
     @Test(expected = WrongInputFormatException.class)
     public void testParseSentenceWrongFormat() throws WrongInputFormatException {
         String sentence = "3 at 19.99";
-        parsedSentence = parsedSentence.parse(sentence);
+        parsedSentence.parse(sentence);
 
         assertEquals(3, parsedSentence.getQuantity());
         assertEquals("book", parsedSentence.getDescription());

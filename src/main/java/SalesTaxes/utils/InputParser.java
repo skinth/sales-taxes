@@ -18,6 +18,11 @@
  */
 package SalesTaxes.utils;
 
+import SalesTaxes.products.Book;
+import SalesTaxes.products.Food;
+import SalesTaxes.products.Medicine;
+import SalesTaxes.products.Product;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,10 +37,29 @@ public class InputParser {
         this.regex = regex;
     }
 
-    public InputParser parse(String sentence) {
+    public void parse(String sentence) {
         Pattern pattern = Pattern.compile(this.regex, Pattern.CASE_INSENSITIVE);
         this.matcher = pattern.matcher(sentence);
-        return this;
+    }
+
+    public Product parseProduct(Product.ProductType productType, String sentence) throws WrongInputFormatException {
+        this.parse(sentence);
+        Product ret ;
+        switch (productType) {
+            case Book:
+                ret = new Book(this.getDescription(), this.getPrice());
+                break;
+            case Food:
+                ret = new Food(this.getDescription(), this.getPrice());
+                break;
+            case Medicine:
+                ret = new Medicine(this.getDescription(), this.getPrice());
+                break;
+            default:
+                ret = new Product(this.getDescription(), this.getPrice());
+                break;
+        }
+        return ret;
     }
 
     private String getMatch(int pos) throws WrongInputFormatException {
@@ -43,25 +67,25 @@ public class InputParser {
         //group[1] = first match
         //...
 
-        if(this.matcher.matches())
+        if (this.matcher.matches())
             return this.matcher.group(pos);
 
         throw new WrongInputFormatException("Wrong format sentence!");
     }
 
-    public int getQuantity() throws WrongInputFormatException{
+    public int getQuantity() throws WrongInputFormatException {
         return Integer.parseInt(this.getMatch(1));
     }
 
-    public String getDescription() throws WrongInputFormatException{
+    public String getDescription() throws WrongInputFormatException {
         return this.getMatch(2);
     }
 
-    public double getPrice() throws WrongInputFormatException{
+    public double getPrice() throws WrongInputFormatException {
         return Double.parseDouble(this.getMatch(3));
     }
 
-    public boolean isImported() throws WrongInputFormatException{
+    public boolean isImported() throws WrongInputFormatException {
         return this.getDescription().contains("imported");
     }
 

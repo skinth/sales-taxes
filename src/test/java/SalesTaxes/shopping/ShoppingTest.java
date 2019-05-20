@@ -29,10 +29,10 @@ public class ShoppingTest {
 
     @Before public void createShopping() {
         cart = new Shopping();
-        Product p = new Product("a DVD", 21.34, false);
+        Product p = new Product("a DVD", 21.34);
         PurchasedProduct purchProduct = new PurchasedProduct(p,2);
         cart.putIn(purchProduct);
-        p = new Product("a PC", 499.23, true);
+        p = new Product("a imported PC", 499.23);
         purchProduct = new PurchasedProduct(p, 1);
         cart.putIn(purchProduct);
     }
